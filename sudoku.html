@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<style>
+			#board{
+				width: 369px;
+				height: 410px;
+				margin: 0 auto;
+			}
+			.col {
+				width: 40px;
+				height: 40px;
+				outline: 1px solid black;
+				display: inline-block;
+				margin-right: 1px;
+			}
+			.col input {
+				width: 35px;
+				height: 35px;
+				margin: 2 2;
+				text-align: center;
+				font-size: 14px;
+				font-family: Helvetica;
+			}
+			.row {
+				width: 400px;
+				height: 41px;
+			}
+
+		</style>
+		<script>
+			window.onload = function(){
+				init();
+			};
+			function init(){
+				var board = document.getElementById("board");
+				for (var i = 0; i < 9; i++){
+					var newRow = document.createElement("div");
+					newRow.className += "row";
+					newRow.id = "r" + (i + 1);
+					for (var j = 0; j < 9; j++){
+						var newCol = document.createElement("div");
+						newCol.className += "col";
+						newCol.id = "r" + (i + 1) + "c" + (j + 1);
+						newRow.appendChild(newCol);
+					}
+					board.appendChild(newRow);
+				}
+
+				var cols = document.getElementsByClassName("col");
+				for (var k = 0; k < cols.length; k++){
+					var input = document.createElement("input");
+					input.setAttribute("type", "text");
+					cols[k].appendChild(input);
+				}
+				
+				
+				console.log(board);
+			}
+		</script>
+	</head>
+	<body>
+		<h1 style="text-align: center; margin-top: 50px">Coach D's &amp; Brainheart's SU(PER)DOKU</h1>
+		<br />
+		<div id ="content" style="width: 100%;margin: 0 auto;">
+			<div id="board">
+			</div>
+		</div>
+	</body>
+</html>
