@@ -27,6 +27,10 @@
 				background-color: #229933;
 				color: #22DD33;
 			}
+			.col.wrong {
+				background-color: #FF0000;
+				color: #FF3322;
+			}
 			.row {
 				width: 400px;
 				height: 41px;
@@ -38,21 +42,67 @@
 			window.onload = function(){
 				init();
 			};
+
 			function init() {
-				function checkCell(event){
-					console.log(event.target.parentNode.className += " solved");
+
+				function markCell(event, valid){
+					if (valid){
+						event.target.parentNode.className += " solved";
+					}
+					else {
+						event.target.parentNode.className += " wrong";
+					}
+					
 				}
 
-				function checkBoard(){
+				function checkBoard(event){
+					
+					var classes = event.target.parentNode.className;
+					var toRemove = ["solved", "wrong"];
+
+					classes = classes.split(" ");
+					var finalClasses = "";
+					for (var c = 0; c < classes.length; c++){
+						var found = false;
+						for (var d = 0; d < toRemove.length; d++){
+							if (classes[c] == toRemove[d]) {
+								found = true;
+							}
+						}
+						if (found == false){
+							finalClasses += (" " + classes[c]);
+						}
+					}
+
+					event.target.parentNode.className = finalClasses;
+					
+					var accepted = "123456789";
+					var value = event.target.value;
+					
+					if (value == ""){ return;}
+
+					for (var index = 0; index < value.length; index++){
+						var found = false;
+						for (var index2 = 0; index2 < accepted.length; index2++){
+							if (accepted[index2] == value[index]) {
+								found = true;
+							}
+						}
+						if (found == false){
+							markCell(event, false);
+							return;
+						}
+					}
+
+					markCell(event, true);
 					var board = [];
 					var rows = document.getElementsByClassName("row");
 					for (var i = 0; i < rows.length; i++){
 						board[i] = [];
 						for (var j = 0; j < rows[i].childNodes.length; j++){
-							board[i][j] = rows[i].childNodes[j].firstChild;
+							board[i][j] = parseInt(rows[i].childNodes[j].firstChild.value);
 						}
 					}
-
 					console.log(board);
 				}
 
@@ -68,12 +118,11 @@
 						var input = document.createElement("input");
 						input.setAttribute("type", "text");
 						newCol.appendChild(input);
-						input.addEventListener("click", checkBoard, newCol);
+						input.addEventListener("input", checkBoard, newCol);
 						newRow.appendChild(newCol);
 					}
 					board.appendChild(newRow);
 				}
-				console.log(board);
 			}
 		</script>
 		<script type="text/javascript" src="sudoku.js"></script>
