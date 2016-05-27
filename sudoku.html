@@ -21,6 +21,10 @@
 				font-size: 14px;
 				font-family: Helvetica;
 			}
+			.col.solved {
+				background-color: #229933;
+				color: #22DD33;
+			}
 			.row {
 				width: 400px;
 				height: 41px;
@@ -31,7 +35,24 @@
 			window.onload = function(){
 				init();
 			};
-			function init(){
+			function init() {
+				function checkCell(event){
+					console.log(event.target.parentNode.className += " solved");
+				}
+
+				function checkBoard(){
+					var board = [];
+					var rows = document.getElementsByClassName("row");
+					for (var i = 0; i < rows.length; i++){
+						board[i] = [];
+						for (var j = 0; j < rows[i].childNodes.length; j++){
+							board[i][j] = rows[i].childNodes[j].firstChild;
+						}
+					}
+
+					console.log(board);
+				}
+
 				var board = document.getElementById("board");
 				for (var i = 0; i < 9; i++){
 					var newRow = document.createElement("div");
@@ -41,19 +62,14 @@
 						var newCol = document.createElement("div");
 						newCol.className += "col";
 						newCol.id = "r" + (i + 1) + "c" + (j + 1);
+						var input = document.createElement("input");
+						input.setAttribute("type", "text");
+						newCol.appendChild(input);
+						input.addEventListener("click", checkBoard, newCol);
 						newRow.appendChild(newCol);
 					}
 					board.appendChild(newRow);
 				}
-
-				var cols = document.getElementsByClassName("col");
-				for (var k = 0; k < cols.length; k++){
-					var input = document.createElement("input");
-					input.setAttribute("type", "text");
-					cols[k].appendChild(input);
-				}
-				
-				
 				console.log(board);
 			}
 		</script>
