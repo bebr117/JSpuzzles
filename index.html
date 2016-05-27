@@ -1,6 +1,31 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+    #puzzle-table{
+      border: 1px solid black;
+      width: 600px;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+
+    #puzzle-table tr{
+      width: 100%;
+    }
+
+    #puzzle-table td{
+      border: 1px solid black;
+      width: 33.3%;
+      height: 50px;
+      /* max-width: 33.3%; */
+      text-align: center;
+      background-color: #B2DFEE;
+    }
+
+    #puzzle-table td:hover{
+      cursor: pointer;
+    }
+    </style>
     <script type="text/javascript" src="jQuery.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
