@@ -1,0 +1,30 @@
+body {
+  font-family: Arial;
+
+}
+
+.title {
+  text-align: center;
+}
+
+#puzzle-table{
+  border: 1px solid black;
+  width: 600px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+#puzzle-table tr{
+  width: 100%;
+}
+
+#puzzle-table td{
+  border: 1px solid black;
+  width: 33.3%;
+  /* max-width: 33.3%; */
+  text-align: center;
+}
+
+#puzzle-table td:hover{
+  cursor: pointer;
+}

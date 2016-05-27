@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="jQuery.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("td").click(function() {
+          window.location.href = $(this).attr("href");
+        });
+      });
+    </script>
+    <title> Coach D and Brainheart's interactive puzzle collection </title>
+  </head>
+  <body>
+    <h1 class="title"> Welcome to Coach D and Brainheart's interactive puzzles! </h1>
+    <table id="puzzle-table">
+      <tr>
+        <td href="sudoku.html"> Sudoku </td>
+      </tr>
+    </table>
+  </body>
+</html>
