@@ -22,6 +22,7 @@
 				text-align: center;
 				font-size: 14px;
 				font-family: Helvetica;
+				background-color: rgba(200, 200, 200, .3);
 			}
 			.col.solved {
 				background-color: #229933;
@@ -43,6 +44,38 @@
 				init();
 			};
 
+			document.onkeydown = function(e) {
+			    e = e || window.event;
+			    var d = document.activeElement;
+			    if (d.tagName == "INPUT"){
+			    	var id = d.parentNode.getAttribute("id");
+				    var row = parseInt(id[1]);
+				    switch(e.which || e.keyCode) {
+				 		case 38:
+				 		
+				 		if (row > 1){
+				 			row -= 1;
+				 			console.log("r"+row+id.substring(2));
+				 			document.activeElement.blur();
+				 			document.getElementById("r"+row+id.substring(2)).firstChild.focus();
+				 		}
+			 		
+			 			break;
+
+				 		case 40:
+
+				 		if (row < document.getElementsByClassName("row").length){
+				 			row += 1;
+				 			console.log("r"+row+id.substring(2));
+				 			document.activeElement.blur();
+				 			document.getElementById("r"+row+id.substring(2)).firstChild.focus();
+				 		}
+				 		
+				 		break;
+				    }
+			    }
+			}
+
 			function init() {
 
 				function markCell(event, valid){
@@ -52,7 +85,6 @@
 					else {
 						event.target.parentNode.className += " wrong";
 					}
-					
 				}
 
 				function checkBoard(event){
