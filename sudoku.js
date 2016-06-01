@@ -50,24 +50,29 @@ function checkRow(row){
 }
 
 function check(grid){
-  // Row check
+  // var valid = true;
+  var error = [];
+
+  // Row check. Row error is type 0.
   for (var i=0; i<_gridSize; i++){
     var row = grid[i].slice(0);
     if (!checkRow(row)){
-     console.log("Row " + i);
-     return false;
+     // console.log("Row " + i);
+     // valid = false;
+     error.push([0,i]);
     }
   }
 
-  // Column check
+  // Column check. Column error is type 1.
   for (var i=0; i < _gridSize; i++){
     var col=[];
     for (var j=0; j < _gridSize; j++){
       col[j] = grid[j][i];
     }
     if (!checkRow(col)) {
-      console.log("Column " + i);
-      return false;
+      // console.log("Column " + i);
+      // valid = false;
+      error.push([1,i]);
     }
   }
 
@@ -78,16 +83,21 @@ function check(grid){
       box[j] = grid[_boxes[i][j][0]][_boxes[i][j][1]]; // Something breaks here
     }
     if (!checkRow(box)){
-      console.log("Box "+i+" failed");
-      return false;
+      // console.log("Box "+i+" failed");
+      // valid = false;
+      error.push([2,i]);
     }
   }
 
-  return true;
+  if (error.length == 0){
+    return true;
+  } else {
+    return error;
+  }
 }
-/*
+
 var sudoku = [
-  [1,1,3,4,5,6,7,8,9],
+  [1,2,3,4,5,6,7,8,9],
   [4,5,6,7,8,9,2,1,3],
   [7,8,9,2,1,3,4,5,6],
   [1,3,4,5,6,7,8,9,2],
@@ -97,5 +107,5 @@ var sudoku = [
   [6,7,8,9,2,1,3,4,5],
   [9,2,1,3,4,5,6,7,8]
 ];
-*/
+
 init_sudoku();
