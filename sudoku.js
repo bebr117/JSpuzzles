@@ -38,11 +38,11 @@ function arrEq(arr1, arr2){
 
 function checkRow(row){
   rowSet = new Set(row);
-  console.log(rowSet.size);
+  // console.log(rowSet.size);
   if (rowSet.size != _gridSize) return false;
   for (var i = 1; i <= _gridSize; i++){
     if (!rowSet.has(i)){
-     console.log("Doesn't have " + i);
+     // console.log("Doesn't have " + i);
      return false;
     }
   }
@@ -97,7 +97,7 @@ function check(grid){
 }
 
 var sudoku = [
-  [1,2,3,4,5,6,7,8,9],
+  [2,1,3,4,5,6,7,8,9],
   [4,5,6,7,8,9,2,1,3],
   [7,8,9,2,1,3,4,5,6],
   [1,3,4,5,6,7,8,9,2],
