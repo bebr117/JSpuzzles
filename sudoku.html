@@ -40,6 +40,26 @@
 		</style>
 		<script type="text/javascript" src="jQuery.js"></script>
 		<script type="text/javascript">
+
+			function errorRow(row){
+				var cols = document.getElementById("r" + (row + 1)).childNodes;
+				for (var index = 0; index < cols.length; index++){
+					if (cols[index].className.indexOf("wrong") == -1) {
+						cols[index].className += " wrong";
+					}
+				}
+			}
+
+			function errorCol(col){
+					var cols = document.getElementsByClassName("col");
+					for (var index = 0; index < cols.length; index++){
+						if (cols[index].className.indexOf("wrong") == -1 
+							&& cols[index].getAttribute("id").indexOf("c" + (col + 1)) > -1) {
+							cols[index].className += " wrong";
+						}
+					}
+				}
+
 			window.onload = function(){
 				init();
 			};
@@ -84,6 +104,17 @@
 					}
 					else {
 						event.target.parentNode.className += " wrong";
+					}
+				}
+
+				
+
+				function errorRow(row){
+					var cols = document.getElementById("r"+row).childNodes;
+					for (var index = 0; index < cols.length; index++){
+						if (cols[index].className.indexOf("wrong") == -1) {
+							cols[index].className += " wrong";
+						}
 					}
 				}
 
