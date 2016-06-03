@@ -166,7 +166,7 @@
 					}
 					console.log(board);
 
-					var results = check(sudoku);
+					var results = check(board);
 
 					if (results === true){
 						alert("You win");
@@ -174,8 +174,8 @@
 					else if (results.length > 0){
 						var error = results[0];
 						switch(error[0]){
-							case 0: console.log("Error in row " + error[1]); break;
-							case 1: console.log("Error in col " + error[1]); break;
+							case 0: console.log("Error in row " + error[1]); errorRow(error[1] + 1); break;
+							case 1: console.log("Error in col " + error[1]); errorCol(error[2]); break;
 							case 2: console.log("Error in quad " + error[1]); break;
 						}
 					}
