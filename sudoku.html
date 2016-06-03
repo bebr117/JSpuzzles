@@ -53,7 +53,7 @@
 			function errorCol(col){
 					var cols = document.getElementsByClassName("col");
 					for (var index = 0; index < cols.length; index++){
-						if (cols[index].className.indexOf("wrong") == -1 
+						if (cols[index].className.indexOf("wrong") == -1
 							&& cols[index].getAttribute("id").indexOf("c" + (col + 1)) > -1) {
 							cols[index].className += " wrong";
 						}
@@ -72,14 +72,14 @@
 				    var row = parseInt(id[1]);
 				    switch(e.which || e.keyCode) {
 				 		case 38:
-				 		
+
 				 		if (row > 1){
 				 			row -= 1;
 				 			console.log("r"+row+id.substring(2));
 				 			document.activeElement.blur();
 				 			document.getElementById("r"+row+id.substring(2)).firstChild.focus();
 				 		}
-			 		
+
 			 			break;
 
 				 		case 40:
@@ -90,7 +90,7 @@
 				 			document.activeElement.blur();
 				 			document.getElementById("r"+row+id.substring(2)).firstChild.focus();
 				 		}
-				 		
+
 				 		break;
 				    }
 			    }
@@ -117,7 +117,8 @@
 				}
 
 				function checkBoard(event){
-					
+
+					/*
 					var classes = event.target.parentNode.className;
 					var toRemove = ["solved", "wrong"];
 
@@ -136,10 +137,17 @@
 					}
 
 					event.target.parentNode.className = finalClasses;
-					
+					*/
+
+					var toRemove = ["solved", "wrong"];
+					var trigger = $("#"+event.target.parentNode.id);
+					for (var i in toRemove){
+						if (trigger.hasClass(toRemove[i])) removeClass(toRemove[i]);
+					}
+
 					var accepted = "123456789";
 					var value = event.target.value;
-					
+
 					if (value == ""){ return;}
 
 					for (var index = 0; index < value.length; index++){
@@ -193,7 +201,7 @@
 						var input = document.createElement("input");
 						input.setAttribute("type", "text");
 						newCol.appendChild(input);
-						input.addEventListener("input", checkBoard, newCol);
+						input.addEventListener("input", checkBoard, /* newCol */ true); // Why newCol? the third parameter is a boolean.
 						newRow.appendChild(newCol);
 					}
 					board.appendChild(newRow);
